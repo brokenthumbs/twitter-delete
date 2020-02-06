@@ -31,16 +31,16 @@ def print_tweet(status):
   # the tweet is older than the cutoff_date
   # check to see if this tweet can be deleted
   if re.match("Verifying myself: I am .* on", status.text) is not None:
-    print("Do not delete Keybase proof.")
+    print("Do not delete Keybase proof.\n")
   elif status.created_at < cutoff_date:
     if retweeted:
       print("Deleting Retweet ...")
       api.destroy_status(id = status.id)
     elif favorite_count < favorite_cutoff:
-      print("Deleting old tweet, less than {} favorites ...".format(favorite_cutoff))
+      print("Deleting old tweet, less than {} favorites ...\n".format(favorite_cutoff))
       api.destroy_status(id = status.id)
     elif retweet_count < retweet_cutoff:
-      print("Deleting old tweet, less than {} retweets ...".format(retweet_cutoff))
+      print("Deleting old tweet, less than {} retweets ...\n".format(retweet_cutoff))
       api.destroy_status(id = status.id)
 
   print("----------\n")
